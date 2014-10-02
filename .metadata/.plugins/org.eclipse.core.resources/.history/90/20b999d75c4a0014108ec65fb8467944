@@ -11,10 +11,10 @@ var lamborgini = {
 		alert("Sorry you can't afford the\n" + lamborgini.brand+" "+lamborgini.model);
 	},
 	"moneyLeft": function(){ 
-		if (lamborgini.budget>lamborgini.price){  //If the Price is lower than the budget the cheap function will run
+		if (lamborgini.budget>lamborgini.price){
 			lamborgini.cheap();
 		}else{
-			lamborgini.expencive(); //If the price is higher than the budget than the expecive function will run
+			lamborgini.expencive();
 			};
 	},
 };	
@@ -188,10 +188,9 @@ var mazda = new Object();
         };
     };
 
-//Arrays containing all the objects from literal and dot notations
+
 var sportsCars = [lamborgini, ferrari, porsche, nissan, audi];              
 var familyCars = [chrysler, chevy, ford, honda, mazda];
 
-//exports the objects to cars.js
 exports.sportsCars = sportsCars;
 exports.familyCars = familyCars;
