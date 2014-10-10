@@ -1,7 +1,13 @@
 =run
 Dorosh_Ian_Project1\:launchMode=run
 Dorosh_Ian_Project1\:launchShortcut=com.appcelerator.titanium.mobile.ui.ios.simulator.iphone.launchShortcut.D768EE09-91F1-463F-8EAB-EC7A0D2AB67A
-LAST_LAUNCH_TIMESTAMP=1412271587792
+Dorosh_Ian_Project2\:launchMode=run
+Dorosh_Ian_Project2\:launchShortcut=com.appcelerator.titanium.mobile.ui.ios.simulator.iphone.launchShortcut.D768EE09-91F1-463F-8EAB-EC7A0D2AB67A
+Dorosh_Ian_Project3\:launchMode=run
+Dorosh_Ian_Project3\:launchShortcut=com.appcelerator.titanium.mobile.ui.ios.simulator.iphone.launchShortcut.iPhone Retina (4 inch)
+Dorosh_Ian_UtilityApp\:launchMode=run
+Dorosh_Ian_UtilityApp\:launchShortcut=com.appcelerator.titanium.mobile.ui.ios.simulator.ipad.launchShortcut.E64A7844-331B-4122-AF30-34B217C51ECC
+LAST_LAUNCH_TIMESTAMP=1412915079602
 eclipse.preferences.version=1
 preference.show.console.onError=true
 preference.studio.perspective.version=103

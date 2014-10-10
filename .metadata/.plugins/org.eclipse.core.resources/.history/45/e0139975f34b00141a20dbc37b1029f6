@@ -1,0 +1,32 @@
+var ui = require("ui");
+
+var netCheck = function(){
+	var url = "http://api.reddit.com/r/funny";
+	if (Ti.Network.online){
+		var xhr = Ti.Network.createHTTPClient({
+			onload: function(e){
+				var json = JSON.parse(this.responseText);
+				console.log(json);
+				var posts = json.data.children;
+				var postArray = [];
+				for (i=0, j=posts.length; i<j; i++){
+					var post = {
+						title: posts[i].data.title,
+						pic: posts[i].data.url,
+					};	
+					postArray.push(post);
+				}
+				console.log(postArray);
+			},
+			onerror: function(e){
+				alert("error: "+e.error);
+			},
+		});
+		xhr.open("GET", url);
+		xhr.send();
+	} else {
+		alert("Network unavailable, please check nework settings");
+	};
+};
+
+exports.netCheck = netCheck;
