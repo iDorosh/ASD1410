@@ -1,0 +1,68 @@
+var testing = require("app");
+
+Ti.Database.install("users.sqlite", "users6");
+
+var create = function(name,userName,age){
+	var db = Ti.Database.open("users6");
+	db.execute('INSERT INTO users (name, userName, age) VALUES(?,?,?)', name, userName,age);
+	var rowID = db.lastInsertRowId;
+	db.close();
+};
+
+exports.create = create;
+
+var info = [];
+
+var cars = Ti.UI.createTableView({
+});
+
+var tble = function(info){
+	var dataTable = [];
+	
+	for (i in info){
+		var row = Ti.UI.createTableViewRow({
+			id: info[i].id,
+		});
+		
+		var tableView = Ti.UI.createView({
+			layout: "vertical",
+			left: 15,
+		});
+		
+		var nameLabel = Ti.UI.createLabel({
+			text: info[i].name,
+			font:{fontSize:18,fontFamily:'Helvetica Neue'},
+		});
+		
+		var userNameLabel = Ti.UI.createLabel({
+			text: info[i].userName,
+			font:{fontSize:16,fontFamily:'Helvetica Neue'},
+		});
+		
+		tableView.add(nameLabel);
+		tableView.add(userNameLabel);
+		row.add(tableView);
+		dataTable.add(row);
+	};
+	cars.setData(dataTable);
+};
+
+var read = function(){
+var db = Ti.Database.open("users6");
+	var dbRows = db.execute("SELECT id, name, userName, age FROM users");
+	while (dbRows.isValidRow()) {
+		info.push({
+			name: dbRows.fieldByName("name"),
+			userName: dbRows.fieldByName("userName"),
+			age: dbRows.fieldByName("age"),
+		});
+		dbRows.next();
+	}
+	dbRows.close();
+	db.close();
+	testing.tble();
+};
+
+
+exports.info = info;
+exports.read = read;

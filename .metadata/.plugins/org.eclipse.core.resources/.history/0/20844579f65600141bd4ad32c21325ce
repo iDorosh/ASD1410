@@ -1,0 +1,32 @@
+
+
+Ti.Database.install("users.sqlite", "users2");
+
+var create = function(name,userName){
+	var db = Ti.Database.open("users2");
+	db.execute('INSERT INTO users (name, userName) VALUES(?,?)', name, userName);
+	var rowID = db.lastInsertRowId;
+	db.close();
+};
+
+exports.create = create;
+
+var playerName;
+
+var read = function(){
+var db = Ti.Database.open("users2");
+	var dbRows = db.execute("SELECT id, name, userName FROM users");
+	while (dbRows.isValidRow()) {
+		playerName.push({
+			name: dbRows.fieldByName("name"),
+			});
+			userName: dbRows.fieldByName("userName"),
+		
+		dbRows.next();
+	}
+	dbRows.close();
+	db.close();
+	
+};
+exports.tableData = playerName;
+exports.read = read;

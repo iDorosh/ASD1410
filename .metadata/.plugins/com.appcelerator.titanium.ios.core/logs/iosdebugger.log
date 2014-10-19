@@ -1,0 +1,39 @@
+Logger started at: Thursday, October 16, 2014 9:04:24 PM CDT
+Component: com.appcelerator.titanium.ios.core
+Version: 1.0.0.1411756658
+[4:24.64] Sent: >21*1413511464059*version<
+[4:24.65] Recv: >1413511464059*2*3.4.1<
+[4:24.71] Sent: >20*1413511464060*update<
+[4:24.71] Recv: >1413511464060*3.4.1<
+[4:24.71] Sent: >45*1413511464061*option*stepFiltersEnabled*false<
+[4:24.72] Recv: >1413511464061<
+[4:24.72] Sent: >36*1413511464062*option*monitorXHR*true<
+[4:24.72] Recv: >1413511464062<
+[4:24.72] Sent: >45*1413511464063*option*suspendOnFirstLine*false<
+[4:24.73] Recv: >1413511464063<
+[4:24.73] Sent: >46*1413511464064*option*suspendOnExceptions*false<
+[4:24.75] Recv: >1413511464064<
+[4:24.75] Sent: >41*1413511464065*option*suspendOnErrors*true<
+[4:24.75] Recv: >1413511464065<
+[4:24.75] Sent: >43*1413511464066*option*suspendOnKeywords*true<
+[4:24.76] Recv: >1413511464066<
+[4:24.76] Sent: >45*1413511464067*option*bypassConstructors*false<
+[4:24.76] Recv: >1413511464067<
+[4:24.76] Sent: >45*1413511464068*option*stepFiltersEnabled*false<
+[4:24.76] Recv: >1413511464068<
+[4:24.76] Sent: >30*1413511464069*detailFormatters<
+[4:24.77] Recv: >1413511464069<
+[4:24.77] Sent: >20*1413511464070*enable<
+[4:24.77] Recv: >1413511464070<
+[4:24.80] Recv: >threads*created*0*kroll$1<
+[4:24.86] Recv: >log*out*[DEBUG] Loading: /Users/iDorosh/Library/Developer/CoreSimulator/Devices/D768EE09-91F1-463F-8EAB-EC7A0D2AB67A/data/Applications/2BFCA3E3-F27A-46F8-81EA-083AD951692F/Dorosh_Ian_Project3.app/app.js, Resource: app_js<
+[4:24.87] Recv: >scripts*created*267704576|app:/app.js||1|129<
+[4:24.89] Recv: >resumed*0*started<
+[4:24.91] Recv: >log*out*[DEBUG] Loading: /Users/iDorosh/Library/Developer/CoreSimulator/Devices/D768EE09-91F1-463F-8EAB-EC7A0D2AB67A/data/Applications/2BFCA3E3-F27A-46F8-81EA-083AD951692F/Dorosh_Ian_Project3.app/_app_props_.json, Resource: _app_props__json<
+[4:24.91] Recv: >log*out*[DEBUG] Loading: /Users/iDorosh/Library/Developer/CoreSimulator/Devices/D768EE09-91F1-463F-8EAB-EC7A0D2AB67A/data/Applications/2BFCA3E3-F27A-46F8-81EA-083AD951692F/Dorosh_Ian_Project3.app/signs.js, Resource: signs_js<
+[4:24.94] Recv: >scripts*created*267706016|app:/signs.js||1|491<
+[4:24.97] Recv: >log*out*[INFO] 2<
+[4:24.258] Recv: >log*out*[DEBUG] Application booted in 260.971963 ms<
+[4:29.865] Recv: >log*out*[INFO] 2<
+[4:33.777] Recv: >log*out*[INFO] 2<
+----------End of file----------

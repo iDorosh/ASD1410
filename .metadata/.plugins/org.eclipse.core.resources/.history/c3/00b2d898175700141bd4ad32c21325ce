@@ -1,0 +1,35 @@
+var loadFile = require("app");
+
+Ti.Database.install("users.sqlite", "users6");
+
+var create = function(name,userName,age){
+	var db = Ti.Database.open("users6");
+	db.execute('INSERT INTO users (name, userName, age) VALUES(?,?,?)', name, userName,age);
+	var rowID = db.lastInsertRowId;
+	db.close();
+};
+
+exports.create = create;
+
+var info = [];
+
+var read = function(){
+var db = Ti.Database.open("users6");
+	var dbRows = db.execute("SELECT id, name, userName, age FROM users");
+	while (dbRows.isValidRow()) {
+		info.push({
+			name: dbRows.fieldByName("name"),
+			userName: dbRows.fieldByName("userName"),
+			age: dbRows.fieldByName("age"),
+		});
+		dbRows.next();
+	}
+	dbRows.close();
+	db.close();
+	app.tableFunction(info);
+	
+};
+
+
+
+exports.read = read;

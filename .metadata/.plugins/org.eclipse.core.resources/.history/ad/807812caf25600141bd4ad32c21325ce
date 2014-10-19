@@ -1,0 +1,11 @@
+
+
+Ti.Database.install("users.sqlite", "users");
+
+var create = function(name,username,age,highscore){
+	var db = Ti.Database.open("users");
+	db.execute('INSERT INTO users (name, username, age, highscore) VALUES (?,?,?,?)', name, username, age, highscore);
+	var rowID = db.lastInsertRowId;
+};
+
+exports.create = create;

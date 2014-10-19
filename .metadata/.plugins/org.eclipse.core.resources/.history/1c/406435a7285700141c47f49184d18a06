@@ -1,0 +1,76 @@
+var tabGroup = Ti.UI.createTabGroup();
+
+var tab1 = Titanium.UI.createTab({  
+    icon:'KS_nav_views.png',
+    title:'Tab 1',
+    window:win1
+});
+
+var tab2 = Titanium.UI.createTab({  
+    icon:'KS_nav_ui.png',
+    title:'Tab 2',
+    window:win2
+});
+
+var tableData = Ti.UI.createTableView({
+	backgroundColor: "#fff",
+});
+
+
+var peopleTbl = function(peopleData){
+	var dataTable = [];
+	for (i in peopleData){
+		var tblRows = Ti.UI.createTableViewRow({
+			id: peopleData[i].id,
+			height: 60,
+		});
+		var tblView = Ti.UI.createView({
+		});
+		
+		var nameLabel = Ti.UI.createLabel({
+			text: peopleData[i].name,
+			font: {fontSize: 18, fontFamily: "Helvetica", fontWeight: "light"},
+		});
+		
+		var userNameLabel = Ti.UI.createLabel({
+			text: peopleData[i].userName,
+			font: {fontSize: 18, fontFamily: "Helvetica", fontWeight: "light"},
+		});
+		
+		tblView.add(nameLabel, userNameLabel);
+		tblRows.add(tbleView);
+		dataTable.push(tblRows);
+	};
+	tableData.setData(dataTable);
+};
+
+exports.tableData = tableData;
+exports.peopleTbl = peopleTbl;
+
+exports.nameField = Titanium.UI.createTextField({
+	color: "#01b4ff",
+	top: 90,
+	height:50,
+	width:"240",
+	borderStyle:Titanium.UI.INPUT_BORDERSTYLE_ROUNDED,
+	hintText:"name", 
+});
+
+exports.descField = Titanium.UI.createTextField({
+	color: "#01b4ff",
+	top: 150,
+	height:50,
+	width:"240",
+	borderStyle:Titanium.UI.INPUT_BORDERSTYLE_ROUNDED,
+	hintText:"username", 
+});
+
+tabGroup.addTab(tab1);
+tabGroup.addTab(tab2);
+
+tabgroup.open();
+
+exports.tab1 = tab1;
+exports.tab2 = tab2;
+ecports.tabGroup =tabGroup;
+

@@ -1,0 +1,61 @@
+var ui = require("ui");
+
+
+Ti.Database.install("users.sqlite", "profiles");
+
+
+var create = function(name,userName){
+	var db = Ti.Database.open("profiles");
+	db.execute('INSERT INTO users (name, userName) VALUES(?,?)', name, userName);
+	var rowID = db.lastInsertRowId;
+	db.close();
+	tblData = [];
+	
+};
+exports.create = create;
+
+
+var tblData = [];
+var read = function(){
+var db = Ti.Database.open("profiles");
+	var dbRows = db.execute("SELECT id, name, userName FROM users");
+	while (dbRows.isValidRow()) {
+		tblData.push({
+			id: dbRows.fieldByName("id"),
+			name: dbRows.fieldByName("name"),
+			userName: dbRows.fieldByName("userName"),
+		});
+		dbRows.next();
+	}
+	dbRows.close();
+	db.close();
+	ui.peopleTbl(tblData);
+	
+};
+exports.read = read;
+
+var update = function(index, location){
+	var db = Ti.Database.open("profiles");
+	db.execute("UPDATE users SET name=?, userName=?", ui.nameField.value,ui.userNameField.value, ui.button.id);
+	db.close;
+	tblData = [];
+	read();
+	
+	ui.button.id = null;
+	ui.button.edit = false;
+	ui.button.title = "Add Profile";
+	ui.nameField.value = "";
+	ui.userNameField.value = "";
+	win2.title = "Add Profile";
+	ui.tab2.title = "Add";
+};
+exports.update = update;
+
+var del = function(id){
+	var db = Ti.Database.open("profiles");
+	db.execute("DELETE FROM users WHERE id=?", id);
+	db.close();
+	tblData = [];
+	read();
+};
+exports.del = del;

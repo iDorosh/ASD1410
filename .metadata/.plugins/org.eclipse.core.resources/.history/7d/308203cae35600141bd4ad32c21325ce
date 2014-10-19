@@ -1,0 +1,138 @@
+Titanium.UI.setBackgroundColor("#000");
+
+var pWidth = Ti.Platform.displayCaps.platformWidth;
+var pHeight = Ti.Platform.displayCaps.platformHeight;
+
+var margin = 5;
+var trueCanvasWidth = pWidth-margin;
+var size = trueCanvasWidth;
+
+
+
+
+
+
+var mainWindow = Ti.UI.createWindow({
+	backgroundColor: "#01b4ff",
+	title: "LogiX", 
+	fullscreen: true,
+	navBarHidden: true,
+});
+
+var copyright = Ti.UI.createLabel({
+	text: "© Ian Dorosh 2014",
+	color: "#898b8c",
+	font: {fontSize: 12, fontFamily: "Helvetica", fontWeight: "light"},
+	bottom: 10,
+	
+});
+
+
+var mainView = Ti.UI.createView({
+	backgroundColor: "#023348",
+	
+	
+});
+
+var logo = Ti.UI.createView({
+	top: "-10%",
+
+});
+
+var plusLogo = Ti.UI.createLabel({
+	text: "+",
+	color: "fff",
+	font: {fontSize: 150, fontFamily: "Helvetica", fontWeight: "light"},
+	top: 150,
+	left: 16,
+});
+
+var lLogo = Ti.UI.createView({
+	backgroundColor: "#01b4ff",
+	width: 13,
+	height: 60, 
+	left:54.5,
+	top: 197,
+
+});
+
+var lLogo2 = Ti.UI.createView({
+	backgroundColor: "#01b4ff",
+	height: 13,
+	width: 45, 
+	left:54.5,
+	top: 244.5,
+
+});
+
+
+var logixLogo = Ti.UI.createLabel({
+	text: "ogi",
+	color: "#01b4ff",
+	font: {fontSize: 80, fontFamily: "Helvetica", fontWeight: "bold"},
+	top: 185,
+});
+
+var xLogo = Ti.UI.createLabel({
+	text: "✕",
+	color: "#fff",
+	font: {fontSize: 120, fontFamily: "Helvetica", fontWeight: "light"},
+	top: 157.5,
+	right: 10,
+});
+
+var addmultiplyButton = Ti.UI.createView({
+	backgroundColor: "#fff",
+	borderRadius: 4,
+	height: 50,
+	width: "31%", 
+	top: "60%",
+
+});
+
+
+
+var playLeft = Ti.UI.createLabel({
+	text: " | ✕",
+	color: "#023348",
+	right: 15,
+	font: {fontSize: 30, fontFamily: "Helvetica", fontWeight: "light"},
+	
+});
+
+var playLeft1 = Ti.UI.createLabel({
+	text: "+",
+	left: 14,
+	top: -1,
+	color: "#023348",
+	font: {fontSize: 37, fontFamily: "Helvetica", fontWeight: "light"},
+	
+});
+
+var addmultiplyBackground = Ti.UI.createView({
+	backgroundColor: "#898b8c",
+	borderRadius: 4,
+	height: 54,
+	width: "31%", 
+	top: "60%",
+
+});
+
+var userButton = Ti.UI.createView({
+	backgroundColor: "#000",
+	width: 30,
+	height: 30, 
+	bottom: 60,
+});
+
+var loadFile = require("signs");
+var buttonSound = loadFile.silent;
+var navWindow = Ti.UI.iOS.createNavigationWindow({
+	window: mainWindow,
+});
+
+logo.add(plusLogo,lLogo, lLogo2, logixLogo, xLogo);
+
+addmultiplyButton.add(playLeft, playLeft1);
+mainWindow.add(mainView, logo, addmultiplyBackground, addmultiplyButton, copyright, buttonSound, userButton);
+navWindow.open();

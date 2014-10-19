@@ -1,0 +1,124 @@
+
+Titanium.UI.setBackgroundColor('#000');
+
+
+var tabGroup = Titanium.UI.createTabGroup();
+
+
+var profiles = Titanium.UI.createWindow({  
+    title:'Tab 1',
+    backgroundColor:'#fff'
+});
+
+var createProfiles = Titanium.UI.createWindow({  
+    title:'Tab 2',
+    backgroundColor:'#fff'
+});
+
+var ui = require("ui");
+var data = require("data");
+data.read();
+
+ui.button.addEventListener("click", function(e){
+	if(ui.button.edit !=true){
+		alert("created!!");
+		var newTitle = ui.nameField.value;
+		var newuserName = ui.userNameField.value;
+		ui.nameField.value = "";
+		ui.userNameField.value = "";
+		ui.nameField.blur();
+		ui.userNameField.blur();
+		data.create(newTitle, newuserName);
+		data.read();
+	}else {
+		alert("update!!");
+		ui.tableData.removeAllChildren();
+		data.update(ui.button.index, ui.button.loaction);
+	}
+});
+
+ui.tableData.addEventListener("click", function(e){
+	var dialog = Ti.UI.createAlertDialog({
+		cancel: 2,
+		buttonNames: ["Delete", "Update", "Cancel"],
+		message: "Edit Profile",
+		title: "Edit Profile",
+	});
+	dialog.addEventListener("click", function(evt){
+		if (evt.index === 1){
+			alert(e);
+			for (i in e.row.children){
+				var views = e.row.children[i];
+				ui.nameField.value = views.children[0].text;
+				ui.userNameField.value = views.children[1].text;
+				
+			};
+			ui.button.title = "Update Profile";
+			ui.button.id = e.row.id;
+			ui.button.edit = true;
+			ui.button.index = e.index;
+			createProfiles.title = "Update Profile";
+			ui.tab2.title = "Update";
+			ui.tabGroup.setActiveTab(ui.tab2);
+		};
+		if (evt.index === 0){
+			var confirmDelete = Ti.UI.createAlertDialog({
+				cancel: 1,
+				buttonNames: ["OK", "Cancel"],
+				message: "Delete Profile?",
+				title: "Delete Profile",
+			});
+			confirmDelete.addEventListener("click", function(evt2){
+				if (evt2.index === 0) {
+					ui.button.id = e.row.id;
+					data.del(ui.button.id);
+				}
+			});
+			confirmDelete.show();
+		};
+	});
+	dialog.show();
+});
+
+profiles.add(ui.tableData);
+createProfiles.add(ui.nameLabel);
+createProfiles.add(ui.nameField);
+createProfiles.add(ui.userNameLabel);
+createProfiles.add(ui.userNameField);
+createProfiles.add(ui.button);
+
+
+
+var tab1 = Titanium.UI.createTab({  
+    icon:'KS_nav_views.png',
+    title:'Tab 1',
+    window:profiles
+});
+
+
+profiles.add();
+
+
+var createProfiles = Titanium.UI.createWindow({  
+    title:'Tab 2',
+    backgroundColor:'#fff'
+});
+var tab2 = Titanium.UI.createTab({  
+    icon:'KS_nav_ui.png',
+    title:'Tab 2',
+    window:createProfiles
+});
+
+
+
+createProfiles.add();
+
+
+
+
+tabGroup.addTab(tab1);  
+tabGroup.addTab(tab2);  
+
+
+// open tab group
+tabGroup.open();

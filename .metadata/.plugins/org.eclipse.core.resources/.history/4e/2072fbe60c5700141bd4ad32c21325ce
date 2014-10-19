@@ -1,0 +1,156 @@
+var loadFile = require("data");
+loadFile.read();
+
+
+// this sets the background color of the master UIView (when there are no windows/tab groups on it)
+Titanium.UI.setBackgroundColor('#000');
+
+// create tab group
+var tabGroup = Titanium.UI.createTabGroup();
+console.log(loadFile.name);
+
+//
+// create base UI tab and root window
+//
+var win1 = Titanium.UI.createWindow({  
+    title:'Tab 1',
+    backgroundColor:'#fff'
+});
+var tab1 = Titanium.UI.createTab({  
+    icon:'KS_nav_views.png',
+    title:'Tab 1',
+    window:win1
+});
+
+var label1 = Titanium.UI.createLabel({
+	color:'#999',
+	text:'I am Window 1',
+	font:{fontSize:20,fontFamily:'Helvetica Neue'},
+	textAlign:'center',
+	width:'auto'
+});
+
+var cars = Ti.UI.createTableView({
+});
+
+var usersSection = Ti.UI.createTableViewSection({
+	headerTitle: "Registered Users",
+});
+
+var testing1 = function(){
+	
+	for(var i=0, j=loadFile.info.length; i<j; i++){
+		loadFile.read();
+		var row = Ti.UI.createTableViewRow({
+			title: loadFile.info[i].name,
+			userName: loadFile.info[i].userName,
+			age: loadFile.info[i].age,
+		});
+		usersSection.add(row);
+	};
+};
+var userSection = [usersSection];
+cars.setData(userSection);
+
+win1.add(label1, cars);
+
+//
+// create controls tab and root window
+//
+var win2 = Titanium.UI.createWindow({  
+    title:'Tab 2',
+    backgroundColor:'#023348',
+    fullscreen: true,
+	navBarHidden: true,
+});
+var tab2 = Titanium.UI.createTab({  
+    icon:'KS_nav_ui.png',
+    title:'Tab 2',
+    window:win2
+});
+
+var createAccount = Ti.UI.createLabel({
+	text: "Create Profile",
+	color: "#01b4ff",
+	top: 25,
+	font: {fontSize: 36, fontFamily: "Helvetica", fontWeight: "light"},
+});
+
+var userPage = Ti.UI.createScrollView({
+	contentWidth: "auto",
+	contentHeight: "auto",
+	showVerticalScrollIndicator: true,
+	height: "100%",
+	width: "100%"
+});
+
+var name = Titanium.UI.createTextField({
+	color: "#01b4ff",
+	top: 90,
+	height:50,
+	width:"240",
+	borderStyle:Titanium.UI.INPUT_BORDERSTYLE_ROUNDED,
+	hintText:"name", 
+});
+
+var userName = Titanium.UI.createTextField({
+	color: "#01b4ff",
+	top: 150,
+	height:50,
+	width:"240",
+	borderStyle:Titanium.UI.INPUT_BORDERSTYLE_ROUNDED,
+	hintText:"username", 
+});
+	
+var age = Titanium.UI.createTextField({
+	color: "#01b4ff",
+	top: 210,
+	height:50,
+	width:"240",
+	borderStyle:Titanium.UI.INPUT_BORDERSTYLE_ROUNDED,
+	keyboardType:  Titanium.UI.KEYBOARD_NUMBER_PAD,
+	hintText:"age", 
+});
+
+var submitButton = Ti.UI.createView({
+	backgroundColor: "#fff",
+	borderRadius: 5,
+	height: 60,
+	width: 130,
+	top: 290,
+});
+
+var submitLabel = Ti.UI.createLabel({
+	text: "Submit",
+	color: "#023348",
+	font: {fontSize: 28, fontFamily: "Helvetica", fontWeight: "light"},
+});
+
+submitButton.addEventListener("click", function(e){
+	if (name.value != 0 && userName.value != 0 && age.value !=0){
+		
+		loadFile.create(name.value,userName.value, age.value);
+		testing1();
+		tabGroup.setActiveTab(0);
+		console.log(loadFile.info);
+	}else{
+		alert("Please complete all forms");
+	};
+	
+});
+
+submitButton.add(submitLabel);
+userPage.add(name, userName, age, submitButton, createAccount);
+win2.add(userPage);
+
+
+
+//
+//  add tabs
+//
+tabGroup.addTab(tab1);  
+tabGroup.addTab(tab2);  
+
+
+// open tab group
+tabGroup.open();

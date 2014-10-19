@@ -1,9 +1,0 @@
-var netCheck = function(){
-	if (Ti.Networe.online){
-		alert("Thanks");
-	} else {
-		alert("Network unavailable, please check nework settings");
-	};
-};
-
-exports.netCheck = netCheck;

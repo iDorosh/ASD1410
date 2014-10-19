@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<launchConfiguration type="com.appcelerator.titanium.mobile.ui.ios.installer.launchConfigurationType">
+<booleanAttribute key="ATTR_MINIFY" value="true"/>
+<stringAttribute key="ATTR_PROJECT_NAME" value="Dorosh_Ian_UtilityApp"/>
+<stringAttribute key="ATTR_TITANIUM_DEPLOY_TYPE" value="development"/>
+<stringAttribute key="appid" value="com.utility.app"/>
+<stringAttribute key="certificate" value="Ian Dorosh (4N46ED86YH)"/>
+<stringAttribute key="debug_config" value="::1413528168170:192.168.29.164"/>
+<stringAttribute key="debug_hosts" value="192.168.29.164"/>
+<stringAttribute key="device_id" value="0e3cb27a3ad9d4b9ff2e543bcb0d2eba9d428ba3"/>
+<listAttribute key="org.eclipse.debug.core.MAPPED_RESOURCE_PATHS">
+<listEntry value="/Dorosh_Ian_UtilityApp"/>
+</listAttribute>
+<listAttribute key="org.eclipse.debug.core.MAPPED_RESOURCE_TYPES">
+<listEntry value="4"/>
+</listAttribute>
+<booleanAttribute key="org.eclipse.debug.core.capture_output" value="true"/>
+<booleanAttribute key="org.eclipse.debug.ui.ATTR_LAUNCH_IN_BACKGROUND" value="true"/>
+<stringAttribute key="process_factory_id" value="com.appcelerator.titanium.ui.logLevelFilteringProcessFactory"/>
+<stringAttribute key="sdk_version" value="8.0"/>
+<stringAttribute key="uuid" value="e8896815-925d-4b62-b9fc-90e2077e6939"/>
+</launchConfiguration>

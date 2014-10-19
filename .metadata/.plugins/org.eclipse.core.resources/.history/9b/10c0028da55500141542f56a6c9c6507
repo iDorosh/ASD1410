@@ -1,0 +1,503 @@
+
+var numbers = [1,2,3,4,5,6];
+var operators = ["+","*"];
+var number1;
+var number2;
+var solve;
+var scoreTest = 2; 
+
+var highest;
+var timerReference = true;
+var resetReference = false;
+Ti.App.Properties.setInt("scoring", scoreTest);
+var current = Ti.App.Properties.getInt("scoring");
+
+
+var results = Ti.UI.createWindow({
+	backgroundColor: "#023348",
+	fullscreen: true,
+});
+
+var resultsBox = Ti.UI.createView({
+		backgroundColor: "#fff",
+		height: "30%",
+		width: "85%",
+	});
+
+var resultsScore = Ti.UI.createLabel({
+	text: "Score",
+	color: "#023348",
+	font: {fontSize: "20%", fontFamily: "Helvetica", fontWeight: "light"},
+	left: "22%",
+	top: "38%",
+});	
+
+var resultsHighScore = Ti.UI.createLabel({
+	text: "High Score",
+	color: "#023348",
+	font: {fontSize: "20%", fontFamily: "Helvetica", fontWeight: "light"},
+	right: "16%",
+	top: "38%",
+});	
+
+var score = Ti.UI.createLabel({
+	text: 0,
+	color: "#023348",
+	font: {fontSize: "60%", fontFamily: "Helvetica", fontWeight: "light"},
+	left: "26%",
+});
+
+
+var highScore = Ti.UI.createLabel({
+	text: 0,
+	color: "#01b4ff",
+	font: {fontSize: "60%", fontFamily: "Helvetica", fontWeight: "light"},
+	right: "26%",
+});
+
+
+	var menuButton = Ti.UI.createView({
+		backgroundColor: "#01b4ff",
+		borderRadius: 5,
+		top: "60%",
+		height: "10%",
+		width: "32%",
+		left: "15%"
+	});
+	
+	var menuLabel = Ti.UI.createLabel({
+	text: "menu",
+	color: "#fff",
+	font: {fontSize: 20, fontFamily: "Helvetica", fontWeight: "light"},
+});
+
+var againButton = Ti.UI.createView({
+		backgroundColor: "#01b4ff",
+		borderRadius: 5,
+		top: "60%",
+		height: "10%",
+		width: "32%",
+		right: "15%"
+	});
+	
+	var againLabel = Ti.UI.createLabel({
+	text: "replay",
+	color: "#fff",
+	font: {fontSize: 20, fontFamily: "Helvetica", fontWeight: "light"},
+	
+});
+
+againButton.add(againLabel);
+menuButton.add(menuLabel);
+results.add(resultsBox, menuButton, againButton, resultsScore, resultsHighScore, score, highScore);
+
+
+
+
+
+
+
+
+
+
+
+
+var gameover = function()
+		{
+			
+		};
+
+
+
+	
+	var timerAnimate = Ti.UI.createAnimation({
+			right: Ti.Platform.displayCaps.platformWidth,
+			duration: 3000,
+	});
+
+var equatitonView = Ti.UI.createLabel({
+	text: "2   5",
+	color: "fff",
+	font: {fontSize: "80%", fontFamily: "Helvetica", fontWeight: "light"},
+});
+
+var scoreLabel = Ti.UI.createLabel({
+	text: 0,
+	color: "#fff",
+	top: 10,
+	right: 8,
+	font: {fontSize: 22, fontFamily: "Helvetica", fontWeight: "bold"},
+});
+
+
+var plusButton = Ti.UI.createView({
+	backgroundColor: "#fff",
+	borderRadius: 5,
+	height: 135,
+	width: 135,
+	left: 13,
+	bottom: 20,
+	
+});
+
+var answerLabel = Ti.UI.createLabel({
+	text: "10",
+	color: "fff",
+	font: {fontSize: "80%", fontFamily: "Helvetica", fontWeight: "light"},
+});
+
+var multiplyButton = Ti.UI.createView({
+	backgroundColor: "#fff",
+	borderRadius: 5,
+	height: 135,
+	width: 135,
+	right: 13,
+	bottom: 20,
+	
+});
+
+var correct = Titanium.Media.createSound({
+	url: "sounds/tapright.mp3",
+	preload: true
+});
+
+var wrong = Titanium.Media.createSound({
+	url: "sounds/tapwrong.wav",
+	preload: true
+});
+
+var plusLabel = Ti.UI.createLabel({
+	text: "+",
+	color: "#023348",
+	top: -40,
+	font: {fontSize: 155, fontFamily: "Helvetica", fontWeight: "light"},
+});
+
+var multiplyLabel = Ti.UI.createLabel({
+	text: "*",
+	color: "#fff",
+	font: {fontSize: 120, fontFamily: "Helvetica", fontWeight: "light"},
+});
+
+var multiplyX = Ti.UI.createLabel({
+	text: "✕",
+	color: "#023348",
+	font: {fontSize: 120, fontFamily: "Helvetica", fontWeight: "light"},
+});
+
+var random = function(){
+	
+	var solve = operators[Math.floor(Math.random()*operators.length)];	
+	
+	number1= Math.ceil(Math.random()*6);
+	number2= Math.ceil(Math.random()*6);
+	while (number1 === 2 && number2 === 2){
+		number2= Math.ceil(Math.random()*6);
+	}
+	
+	if(solve == "*"){
+	answerLabel.text = number1*number2;
+	} else { 
+		answerLabel.text = number1+number2;
+		};
+	
+	equatitonView.text = number1 +" "+ solve+" "+ number2;
+			
+
+	
+};
+
+plusButton.addEventListener("click", function(number1){
+	if(equatitonView.text.indexOf("+")>-1){
+		timerRefernece=false;
+		correct.play();
+		scoreLabel.text++;
+		scoreTest++;
+		random();
+		
+	
+	}else{
+		wrong.play();
+		score.text = scoreLabel.text;
+		if (score.text > highScore.text){
+			highest = score.text;
+		highScore.text = highest;
+		
+		}
+	};
+});
+	
+multiplyButton.addEventListener("click", function(number2){
+	if(equatitonView.text.indexOf("*")>-1){
+		timerReference=false;
+		correct.play();
+		scoreLabel.text++;
+		scoreTest++;
+		random();
+	
+		
+		
+	}else{
+		wrong.play();
+		score.text = scoreLabel.text;
+		if (score.text > highScore.text){
+			highScore.text = score.text;
+		};
+		
+		scoreLabel.text--;
+		scoreLabel.color = "#ee0a0a";
+		color = setTimeout(function(){
+			scoreLabel.color = "#fff";
+			}, 500);
+		if (score.text<0){
+			score.text=0;
+		};
+		
+	};
+});
+
+var signsWindow = Ti.UI.createWindow({
+	backgroundColor: "#023348", 
+	fullscreen: true,
+});
+
+
+var signsView = Ti.UI.createView({
+	backgroundColor: "#023348",
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+var timer = Ti.UI.createView({
+        right : 0,
+        top:0,
+        height : 5,
+        width : 325,
+        backgroundColor : "#fff",
+    });
+    
+var reset = function(){
+	var b = Ti.UI.createAnimation({
+            right : 0,
+            duration : .00000001,
+        });
+        
+    timer.animate(b);
+};
+
+ var timerView = function(){   
+    
+     var a = Ti.UI.createAnimation({
+            right : "100%",
+            duration : 20000,
+        });
+ 
+     if (timerReference == true){
+           
+            timer.animate(a);
+           	setTimeout(function(){
+           		wrong.play(); 
+           		results.open();
+           	}, 20000);
+           console.log(timerReference);
+            
+          };
+       
+      
+ 		
+ 		
+       
+ };
+    
+    timer.addEventListener('click', timerView);
+ 
+        
+       
+    
+    
+multiplyButton.addEventListener("click", timerView);
+plusButton.addEventListener("click", timerView);
+signsView.add(timer);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+var space = Ti.UI.createView({
+	backgroundColor: "#023348",
+	height: 70,
+	width: 55, 
+	borderRadius: 5,
+});
+
+var equationViewBackground2 = Ti.UI.createView({
+	backgroundColor: "#898b8c",
+	top: "7%",
+	borderRadius: 4,
+	width: "85%",
+	height: "18.5%",
+});
+
+var equationViewBackground = Ti.UI.createView({
+	backgroundColor: "#01b4ff",
+	top: "7%",
+	borderRadius: 4,
+	width: "85%",
+	height: "17.5%",
+});
+
+var equalsLabel = Ti.UI.createLabel({
+	text: "=",
+	color: "fff",
+	top: "26%",
+	font: {fontSize: "80%", fontFamily: "Helvetica", fontWeight: "light"},
+});
+
+var answerBackground = Ti.UI.createView({
+	backgroundColor: "#01b4ff",
+	borderRadius: 4,
+	top: "44%",
+	width: "42%",
+	height: "17.7%",
+});
+var answerBackground2 = Ti.UI.createView({
+	backgroundColor: "#898b8c",
+	borderRadius: 4,
+	top: "44.5%",
+	width: "42%",
+	height: "18%",
+});
+
+
+var plusBackground = Ti.UI.createView({
+	backgroundColor: "#898b8c",
+	borderRadius: 5,
+	height: 139,
+	width: 135,
+	left: 13,
+	bottom: 16,
+	
+});
+
+
+var multiplyBackground = Ti.UI.createView({
+	backgroundColor: "#898b8c",
+	borderRadius: 5,
+	height: 139,
+	width: 135,
+	right: 13,
+	bottom: 16,
+	
+});
+
+
+var click = Titanium.Media.createSound({
+	url: "sounds/click.wav",
+	preload: true
+});
+
+addmultiplyButton.addEventListener("click", function() {
+	click.play();
+});
+
+addmultiplyButton.addEventListener("click", function(openSigns){
+	random();
+	scoreLabel.text = 0,
+	resetReference = true;
+	reset();
+	timerReference=true;
+	signsWindow.open({
+		transition: Ti.UI.iPhone.AnimationStyle.FLIP_FROM_LEFT
+	});
+	
+	
+
+});
+
+
+
+menuButton.addEventListener("click", function(){
+	signsWindow.close({
+		transition: Ti.UI.iPhone.AnimationStyle.FLIP_FROM_LEFT,
+	});
+	results.close({
+		transition: Ti.UI.iPhone.AnimationStyle.FLIP_FROM_LEFT,
+	});
+	
+	
+});
+
+againButton.addEventListener("click", function(){
+	random();
+	results.close({
+		transition: Ti.UI.iPhone.AnimationStyle.FLIP_FROM_LEFT,
+		
+	});
+	
+	resetReference = true;
+	reset();
+	timerReference=true;
+	
+	signsWindow.open;
+	scoreLabel.text=0;
+	
+	
+	
+});
+
+
+
+
+answerBackground.add(answerLabel);
+equationViewBackground.add(equatitonView, space);
+multiplyBackground.add(multiplyLabel);
+multiplyButton.add(multiplyX);
+plusButton.add(plusLabel);
+signsView.add(equationViewBackground2, equationViewBackground, plusBackground, plusButton, multiplyBackground, multiplyButton, equalsLabel,answerBackground2, answerBackground);
+signsWindow.add(signsView, scoreLabel);
+
