@@ -5,7 +5,7 @@
     <version>1.0</version>
     <publisher>iDorosh</publisher>
     <url>http://</url>
-    <description/>
+    <description>undefined</description>
     <copyright>2014 by iDorosh</copyright>
     <icon>appicon.png</icon>
     <fullscreen>false</fullscreen>
@@ -55,5 +55,5 @@
         <target device="iphone">true</target>
         <target device="mobileweb">false</target>
     </deployment-targets>
-    <sdk-version>3.4.1.v20140929160915</sdk-version>
+    <sdk-version>3.4.0.GA</sdk-version>
 </ti:app>
